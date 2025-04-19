@@ -1,5 +1,6 @@
 {
   "appId": "com.example.app",
   "appName": "google_search_clone",
-  "webDir": "dist"
+  "webDir": "dist",
+  "bundledWebRuntime": false
 }

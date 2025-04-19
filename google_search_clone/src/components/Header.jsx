@@ -1,7 +1,71 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { signIn } from "../utils/auth";
 import { auth } from "../firebase";
-import axios from "axios";
+import { FlaskConical } from "lucide-react";
+
+const HeaderWrapper = styled.header`
+  background-color: #202124;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:60px;
+`;
+
+const LeftIcons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+const CenterButton = styled.div`
+    background-color: #303134;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;s
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+`;
+
+const GIcon = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+const RightWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const AvatarCircle = styled.div`
+  background-color: #5f6368;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+`;
+const GIconWrap = styled.div`
+    background: #202124;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+`;
+const SignInButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+`;
 
 const Header = () => {
   const [user, setUser] = useState(null);
@@ -19,46 +83,35 @@ const Header = () => {
     return "U";
   };
 
-
   return (
-    <>
-      <header>
-        <nav className="navbar">
-          <ul>
-            <li>
-              <a className="link" href="#">Gmail</a>
-            </li>
-            <li>
-              <a className="link" href="#">Images</a>
-            </li>
-            <li>
-              {user ? (
-                <div className="circle-shadow">
-                  <a className="user-icon" href="#">
-                    <span>{getUserInitial()}</span>
-                  </a>
-                </div>
-              ) : (
-                <button onClick={() => signIn(setUser)} className="sign-in-btn">
-                  <img
-                    src="https://static.vecteezy.com/system/resources/previews/008/302/513/original/eps10-blue-user-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg"
-                    width="30"
-                    height="30"
-                    alt=""
-                  />
-                </button>
-              )}
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <HeaderWrapper>
+      <LeftIcons>
+        <FlaskConical size={20} color="#9aa0a6" />
+      </LeftIcons>
 
+      <CenterButton>
+        <GIconWrap>
+          <GIcon src="https://www.google.com/favicon.ico" alt="G" />
+          Search
+        </GIconWrap>
+        <span style={{ color: "#8ab4f8", marginLeft: "2px" }}>✨</span>
+      </CenterButton>
 
-
-
-
-
-    </>
+      <RightWrapper>
+        {user ? (
+          <AvatarCircle>{getUserInitial()}</AvatarCircle>
+        ) : (
+          <SignInButton onClick={() => signIn(setUser)}>
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/008/302/513/original/eps10-blue-user-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg"
+              width="32"
+              height="32"
+              alt="Sign In"
+            />
+          </SignInButton>
+        )}
+      </RightWrapper>
+    </HeaderWrapper>
   );
 };
 
