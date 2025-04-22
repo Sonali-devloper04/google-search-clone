@@ -1,6 +1,7 @@
 
 div#root {
     background: #202124;
+    /* height:100vh; */
 }
 * {
     margin: 0;

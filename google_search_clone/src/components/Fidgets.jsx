@@ -36,6 +36,7 @@ const FidgetsSection = styled.div`
     justify-content: space-around;
     margin-top: 15px;
     border-bottom: 2px solid #303134;
+    overflow:auto;
 `;
 
 const FidgetCard = styled.div`
