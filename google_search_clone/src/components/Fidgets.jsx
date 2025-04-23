@@ -32,7 +32,7 @@ const iconsData = [
 const FidgetsSection = styled.div`
     display: flex;
     gap: 1rem;
-    padding: 0.5rem 1rem 1rem;
+    padding: 0 1rem 1rem;
     justify-content: space-around;
     margin-top: 15px;
     border-bottom: 2px solid #303134;

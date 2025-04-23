@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { signIn } from "../utils/auth";
 import { auth } from "../firebase";
-import { FlaskConical } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import GoogleDropdown from "./GoogleDropdown";
 const HeaderWrapper = styled.header`
@@ -30,6 +29,7 @@ const CenterButton = styled.div`
     border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
+    border-radius:16px;
 `;
 
 const GIcon = styled.img`
@@ -73,12 +73,12 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px 0 10px;
+  padding: 20px 0 0;
 `;
 
 const LogoImg = styled.div`
   width: 300px;
-  margin-bottom: 20px;
+  margin: 20px 0;
   text-align: center;
 `;
 
@@ -108,6 +108,7 @@ const SearchInput = styled.input`
   border: none;
   color: #E8EAED;
   background-color: transparent;
+  margin-left:15px;
 
   &::placeholder {
     color: #E8EAED;
@@ -256,7 +257,7 @@ const Header = () => {
     <>
         <HeaderWrapper>
       <LeftIcons>
-        <FlaskConical size={20} color="#9aa0a6" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#abc8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flask-conical" aria-hidden="true"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"></path><path d="M6.453 15h11.094"></path><path d="M8.5 2h7"></path></svg>
       </LeftIcons>
 
       <CenterButton>

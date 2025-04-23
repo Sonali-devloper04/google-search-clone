@@ -41,6 +41,7 @@ const SearchInput = styled.input`
   font-size: 16px;
   outline: none;
   background: #303134;
+    margin-left:15px;
 `;
 const IconButton = styled.button`
   height: 45px;

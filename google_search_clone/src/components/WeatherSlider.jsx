@@ -25,7 +25,8 @@ const Card = styled.div`
 const CardTitle = styled.div`
   font-size: 14px;
   opacity: 0.7;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
+  color:#d3d4d5;
 `;
 
 const CardBottom = styled.div`
@@ -36,7 +37,7 @@ const CardBottom = styled.div`
 
 const CardValue = styled.div`
   font-size: 18px;
-  font-weight: 600;
+  color:#d3d4d5;
 `;
 
 const IconWrapper = styled.div`

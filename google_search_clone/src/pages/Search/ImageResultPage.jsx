@@ -94,7 +94,7 @@ const SearchInput = styled.input`
   border: none;
   color: #E8EAED;
   background-color: transparent;
-
+  margin-left:15px;
   &::placeholder {
     color: #E8EAED;
     font-weight: 500;
