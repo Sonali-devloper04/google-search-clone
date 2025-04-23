@@ -1,12 +1,37 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Google Image Search Clone
 
-Currently, two official plugins are available:
+****Project Overview****
+This project is a Google Search Clone, built using React.js, Capacitor.js, Styled-components, and Firebase for user authentication. The primary goal of this project was to replicate Google’s image search interface, implementing text, voice, and image search functionalities while ensuring a responsive and user-friendly experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+***Features***
+Text Search: Users can type their query, and dynamic search suggestions are displayed using the DummyJSON API.
 
-## Expanding the ESLint configuration
+Voice Search: Users can speak their query, and the app converts voice input to search results.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Image Search: Users can upload images, crop them, and get relevant search results. Camera view is activated upon clicking the upload button, with an option to upload from the gallery.
+
+Sign-In Functionality: Firebase authentication is integrated to allow users to sign in using their Google account securely.
+
+Responsive Design: The user interface is designed with mobile-first principles, ensuring the app performs well across a variety of devices and screen sizes.
+
+***Technologies Used***
+React.js: JavaScript library for building the user interface.
+
+Capacitor.js: Framework for building cross-platform mobile apps.
+
+Styled-components: For styling React components with CSS in JavaScript.
+
+Firebase: Authentication service for Google sign-in functionality.
+
+DummyJSON API: Public API used for fetching search suggestions.
+
+
+***Installation***
+Clone the repository: git clone https://github.com/your-username/google-image-search-clone.git
+cd google-image-search-clone
+npm install
+npm start
+
+***Live Demo ***
+Live Demo :You can view the live demo of the project here: [(https://friendly-sunflower-9de0cc.netlify.app/)]
