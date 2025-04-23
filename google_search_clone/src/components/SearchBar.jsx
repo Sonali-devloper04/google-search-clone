@@ -100,8 +100,16 @@ const SuggestionItem = styled.div`
 const BackIconButton = styled(IconButton)`
   margin-right: 10px;
 `;
-
-
+const SearchIconButton = styled.button`
+    position: absolute;
+    bottom: 30px;
+    transform: translate(-50%, 10px);
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    padding: 30px;
+    border: 20px solid #303134;
+`;
 const SearchBar = ({ initialQuery = "" }) => {
   const navigate = useNavigate();
   const [query, setQuery] = useState(initialQuery);
@@ -185,7 +193,7 @@ const SearchBar = ({ initialQuery = "" }) => {
 
   const handleCropComplete = () => {
     setShowCropper(false);
-    navigate(`/search?q=${encodeURIComponent(imagePreview)}&type=image`);
+    navigate(`/image-search?q=${encodeURIComponent(imagePreview)}&type=image`);
   };
 
   return (
@@ -246,11 +254,6 @@ const SearchBar = ({ initialQuery = "" }) => {
       </SearchContainer>
      
 
-      {isListening && (
-        <div style={{ color: "#ccc", marginTop: "10px", fontWeight: "500" }}>
-          🎙️ Listening...
-        </div>
-      )}
       {isVoiceOverlayVisible && <VoiceListeningOverlay />}
 
       {showCropper && (
@@ -264,7 +267,9 @@ const SearchBar = ({ initialQuery = "" }) => {
               onCropChange={setCrop}
               onZoomChange={setZoom}
             />
-            <button onClick={handleCropComplete}>Search with Image</button>
+            <SearchIconButton onClick={handleCropComplete}> <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" fill="white">
+          <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.17 5.6 12.57 3 9.5 3S3.83 5.6 3.83 8.67c0 3.07 2.6 5.67 5.67 5.67a6.471 6.471 0 005.34-1.48l.27.28v.79l4.25 4.25 1.49-1.49-4.25-4.25zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg></SearchIconButton>
           </div>
         </div>
       )}

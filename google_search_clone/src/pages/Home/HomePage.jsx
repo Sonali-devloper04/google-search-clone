@@ -17,7 +17,6 @@ const HomePageMob = () => {
   return (
     <>
         <Header />
-        {/* <SearchBar onSearchClick={handleSearchClick} />  */}
         <Fidgets />
         <WeatherSlider />
         <Feed />

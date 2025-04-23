@@ -1,8 +1,16 @@
 
 div#root {
     background: #202124;
-    /* height:100vh; */
 }
+@media only screen and (min-width: 767px) {
+    div#root {
+        width: 450px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+
 * {
     margin: 0;
     padding: 0;

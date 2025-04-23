@@ -84,12 +84,12 @@ const LogoImg = styled.div`
 
 const SearchForm = styled.form`
   border-radius: 30px;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-  background: #303134;
-  width: 100%;
-  max-width: 390px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: #303134;
+    width: 100%;
+    max-width: 360px;
 
   &:hover {
     box-shadow: 0px 0px 4px 0px #B5B5B5;
@@ -104,7 +104,6 @@ const IconButton = styled.button`
 const SearchInput = styled.input`
   flex-grow: 1;
   height: 30px;
-  margin: 15px;
   font-size: 16px;
   border: none;
   color: #E8EAED;
@@ -124,9 +123,116 @@ const SearchInput = styled.input`
 const MicIconButton = styled(IconButton)`
   margin-right: 20px;
 `;
+const Wrapper = styled.div`
+  height: 100vh;
+  background-color: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.dark {
+    background-color: #6b7280;
+  }
+`;
+
+const ProfileCard = styled.div`
+  background-color: #ffffff;
+  width: 16rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.dark {
+    background-color: #1f2937;
+  }
+`;
+
+const ProfileBox = styled.div`
+  padding: 0.75rem;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.3s;
+  cursor: pointer;
+
+  &.active {
+    border-color: #4338ca;
+    transform: scale(1.03);
+  }
+`;
+
+const Avatar = styled.div`
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 2px solid #111827;
+
+  &.dark {
+    border-color: #ffffff;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const Name = styled.div`
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #111827;
+
+  &.dark {
+    color: white;
+  }
+`;
+
+const Dropdown = styled.div`
+    margin: 0 15px;
+    position: absolute;
+    width: 100%;
+    top: 90px;
+    max-width: 380px;
+    height: auto;
+    background: #303134;
+    border: none;
+    backdrop-filter: blur(10px);
+    max-width: 340px;
+    border-radius: 8px;
+
+  &.dark {
+    background-color: #1f2937;
+    border-color: transparent;
+    color: white;
+  }
+`;
+
+const MenuItem = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-right: 4px solid transparent;
+  transition: border-color 0.2s;
+      color: #fff;
+
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+`;
+const CloseButton = styled.button`
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+`;
 const Header = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((u) => {
@@ -161,7 +267,7 @@ const Header = () => {
 
       <RightWrapper>
         {user ? (
-          <AvatarCircle>{getUserInitial()}</AvatarCircle>
+          <AvatarCircle onClick={() => setShowDropdown(!showDropdown)}>{getUserInitial()}</AvatarCircle>
         ) : (
           <SignInButton onClick={() => signIn(setUser)}>
             <img
@@ -195,13 +301,53 @@ const Header = () => {
             </svg>
           </MicIconButton>
   
-          <IconButton type="button" >
+          <IconButton type="button" onClick={handleIconClick} >
             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="white">
               <path d="M12 17q1.875 0 3.188-1.312Q16.5 14.375 16.5 12.5q0-1.875-1.312-3.188Q13.875 8 12 8q-1.875 0-3.188 1.312Q7.5 10.625 7.5 12.5q0 1.875 1.312 3.188Q10.125 17 12 17Zm0-1.5q-1.25 0-2.125-.875T9 12.5q0-1.25.875-2.125T12 9.5q1.25 0 2.125.875T15 12.5q0 1.25-.875 2.125T12 15.5Zm-8.25 3.25V7.25h4.275l1.125-1.5h5.75l1.125 1.5h4.275v11.5H3.75Z"/>
             </svg>
           </IconButton>
         </SearchForm>
       </ContentWrapper>
+      {showDropdown && (
+          
+          <Dropdown>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <CloseButton onClick={() => setShowDropdown(false)}>
+                    X
+                  </CloseButton>
+                  <li>
+                    <MenuItem href="#">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      Logout
+                    </MenuItem>
+                  </li>
+                {/* <li>
+                  <MenuItem href="#">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Turn on Incognito
+                  </MenuItem>
+                </li>
+                <hr />
+                <li>
+                  <MenuItem href="#">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0..." strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Setting
+                  </MenuItem>
+                </li> */}
+                <hr />
+                <li>
+                </li>
+              </ul>
+            </Dropdown>
+        )}
+
     </>
 
   );

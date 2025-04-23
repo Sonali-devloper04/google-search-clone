@@ -160,6 +160,7 @@ const RelatedList = styled.ul`
     }
   }
 `;
+
   return (
     <>
         <ContentWrapper>

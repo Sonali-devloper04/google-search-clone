@@ -13,6 +13,10 @@ position: fixed;
     justify-content: space-around;
     padding: 10px 0;
     bottom: 0;
+
+     @media (min-width: 480px) {
+        width:450px;
+  }
 `;
 
 const IconWrapper = styled.div`
