@@ -5,6 +5,7 @@ const DropdownWrap = styled.div `
     left: 50%;
     transform: translate(-50%, 10px);
     width: 100%;
+    z-index: 999;
 `;
 
 
@@ -106,7 +107,7 @@ const CloseButton = styled.button`
 `;
 const LogoImg = styled.div`
   width: 300px;
-  margin-bottom: 20px;
+    margin: 0 auto 20px;
   text-align: center;
 `;
 const GoogleDropdown = ({ handleClose }) => {
@@ -120,7 +121,7 @@ const GoogleDropdown = ({ handleClose }) => {
         <ProfileSection>
           <Avatar>S</Avatar>
           <UserDetails>
-            <UserName>Sonali</UserName>
+            <UserName>User</UserName>
             <Email>email@example.com</Email>
           </UserDetails>
         </ProfileSection>
