@@ -5,6 +5,7 @@ import axios from "axios";
 import Cropper from "react-easy-crop";
 import styled from "styled-components";
 import VoiceListeningOverlay from "./VoiceListeningOverlay";
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 const ContentWrapper = styled.div`
   width: 100%;
@@ -110,6 +111,19 @@ const SearchIconButton = styled.button`
     padding: 30px;
     border: 20px solid #303134;
 `;
+const GalleryButton = styled.button`
+    position: absolute;
+    bottom: 40px;
+    left: 50px;
+    transform: translateX(-50%);
+    background: #202124;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+`;
 const SearchBar = ({ initialQuery = "" }) => {
   const navigate = useNavigate();
   const [query, setQuery] = useState(initialQuery);
@@ -190,6 +204,26 @@ const SearchBar = ({ initialQuery = "" }) => {
       reader.readAsDataURL(file);
     }
   };
+  const openCamera = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera,
+    });
+    setImagePreview(image.dataUrl);
+    setShowCropper(true);
+  };
+  const openGallery = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Photos,
+    });
+    setImagePreview(image.dataUrl);
+    setShowCropper(true);
+  };
 
   const handleCropComplete = () => {
     setShowCropper(false);
@@ -232,7 +266,7 @@ const SearchBar = ({ initialQuery = "" }) => {
           onChange={handleImageUpload}
         />
 
-        <IconButton type="button" onClick={() => fileInputRef.current.click()}>
+        <IconButton type="button" onClick={openCamera}>
           <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="white">
           <path d="M12 17q1.875 0 3.188-1.312Q16.5 14.375 16.5 12.5q0-1.875-1.312-3.188Q13.875 8 12 8q-1.875 0-3.188 1.312Q7.5 10.625 7.5 12.5q0 1.875 1.312 3.188Q10.125 17 12 17Zm0-1.5q-1.25 0-2.125-.875T9 12.5q0-1.25.875-2.125T12 9.5q1.25 0 2.125.875T15 12.5q0 1.25-.875 2.125T12 15.5Zm-8.25 3.25V7.25h4.275l1.125-1.5h5.75l1.125 1.5h4.275v11.5Z"/>
         </svg>
@@ -270,6 +304,14 @@ const SearchBar = ({ initialQuery = "" }) => {
             <SearchIconButton onClick={handleCropComplete}> <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" fill="white">
           <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.17 5.6 12.57 3 9.5 3S3.83 5.6 3.83 8.67c0 3.07 2.6 5.67 5.67 5.67a6.471 6.471 0 005.34-1.48l.27.28v.79l4.25 4.25 1.49-1.49-4.25-4.25zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
         </svg></SearchIconButton>
+        <GalleryButton onClick={openGallery}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+              <path d="M4 15L9 10L13 13L16 10L20 14" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="17" cy="18" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+              <line x1="19.5" y1="20.5" x2="22" y2="23" stroke="currentColor" stroke-width="2"/>
+            </svg></GalleryButton>
           </div>
         </div>
       )}

@@ -19,7 +19,6 @@ const TabBar = styled.div`
 `;
 
 const Tab = styled.div`
-  padding: 0.5rem;
   border-bottom: 2px solid ${props => (props.active ? '#fff' : 'transparent')};
   color: ${props => (props.active ? '#fff' : '#888')};
   font-weight: ${props => (props.active ? 'bold' : 'normal')};

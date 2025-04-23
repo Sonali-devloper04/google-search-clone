@@ -45,5 +45,14 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to take pictures for search.</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to pick an image for search.</string>
+
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need permission to save edited photos to your gallery.</string>
+
 </dict>
 </plist>

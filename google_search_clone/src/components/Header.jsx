@@ -4,7 +4,7 @@ import { signIn } from "../utils/auth";
 import { auth } from "../firebase";
 import { FlaskConical } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
-
+import GoogleDropdown from "./GoogleDropdown";
 const HeaderWrapper = styled.header`
   background-color: #202124;
   padding: 12px 16px;
@@ -234,6 +234,8 @@ const Header = () => {
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const handleClose = () => setShowDropdown(false);
+
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((u) => {
       if (u) setUser(u);
@@ -309,43 +311,7 @@ const Header = () => {
         </SearchForm>
       </ContentWrapper>
       {showDropdown && (
-          
-          <Dropdown>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              <CloseButton onClick={() => setShowDropdown(false)}>
-                    X
-                  </CloseButton>
-                  <li>
-                    <MenuItem href="#">
-                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      Logout
-                    </MenuItem>
-                  </li>
-                {/* <li>
-                  <MenuItem href="#">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Turn on Incognito
-                  </MenuItem>
-                </li>
-                <hr />
-                <li>
-                  <MenuItem href="#">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0..." strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Setting
-                  </MenuItem>
-                </li> */}
-                <hr />
-                <li>
-                </li>
-              </ul>
-            </Dropdown>
+        <GoogleDropdown handleClose={handleClose} />
         )}
 
     </>
